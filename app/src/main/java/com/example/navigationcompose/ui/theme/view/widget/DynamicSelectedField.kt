@@ -13,7 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusModifier
+import kotlin.collections.mutableListOf
 import androidx.compose.material3.ExposedDropdownMenuBox as ExposedDropdownMenuBox1
+import kotlin.collections.mutableListOf as mutableListOf1
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,9 +26,7 @@ fun DynamicSelectField(
     onValueChangedEvent: (String) ->Unit,
     modifier: Modifier = Modifier
 ) {
-    var expanded by remember { val mutableListOf: MutableList<*> = mutableListOf(false)
-        mutableListOf
-    }
+    var expanded by remember { mutableListOf(false) }
 
     ExposedDropdownMenuBox(
         expanded = expanded,
