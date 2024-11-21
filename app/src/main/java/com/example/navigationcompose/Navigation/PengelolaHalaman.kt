@@ -15,6 +15,7 @@ enum class Halaman{
     Mahasiswa,
     Matakuliah,
     Tampil,
+
 }
 
 @Composable
