@@ -8,6 +8,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.example.navigationcompose.ui.theme.view.screen.MahasiswaFormView
+import com.example.navigationcompose.ui.theme.view.screen.RencanaStudiView
 import com.example.navigationcompose.ui.theme.view.viewmodel.MahasiswaViewModel
 import com.example.navigationcompose.ui.theme.view.viewmodel.RencanaStudiViewModel
 
@@ -34,12 +36,24 @@ fun MahasiswaApp(
         startDestination = Halaman.Splash.name,
         modifier = modifier.padding()
     ) {
-        composable(route = Halaman.Splash.name){
-            SplashView (onSubmitButoon = {
+        composable(route = Halaman.Splash.name) {
+            SplashView(onMulaiButoon = {
                 navController.navigate(
                     Halaman.Mahasiswa.name
                 )
             })
         }
+        composable(route = Halaman.Mahasiswa.name) {
+            MahasiswaFormView(
+                onSubmitButoonClicked = {
+                    MahasiswaViewModel.saveDataMahasiswa(it)
+                    navController.navigate(Halaman.Matakuliah.name)
+                },
+                onBackButtonClicked = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
     }
 }
