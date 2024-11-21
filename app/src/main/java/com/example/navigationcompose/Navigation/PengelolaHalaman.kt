@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.navigationcompose.ui.theme.view.viewmodel.MahasiswaViewModel
+import com.example.navigationcompose.ui.theme.view.viewmodel.RencanaStudiViewModel
 
 enum class Halaman{
     Splash,
@@ -22,6 +23,7 @@ enum class Halaman{
 fun MahasiswaApp(
     modifier: Modifier = Modifier,
     mahasiswaViewModel: MahasiswaViewModel = viewModel(),
+    krsViewModel: RencanaStudiViewModel = viewModel(),
     navController: NavController = rememberNavController()
 
 ){
