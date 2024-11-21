@@ -1,6 +1,7 @@
 package com.example.navigationcompose.ui.theme.view.screen
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.example.navigationcompose.model.Mahasiswa
@@ -12,6 +13,6 @@ fun RencanaStudiView(
     onBackButtonClicked: () -> Unit
 ) {
     var chosenDropdown by remember {
-        Muta
+        mutableStateOf("")
     }
-}
+    }
