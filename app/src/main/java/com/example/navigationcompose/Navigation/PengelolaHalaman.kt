@@ -12,7 +12,9 @@ import com.example.navigationcompose.ui.theme.view.viewmodel.MahasiswaViewModel
 
 enum class Halaman{
     Splash,
-    Mahasiswa
+    Mahasiswa,
+    Matakuliah,
+    Tampil,
 }
 
 @Composable
