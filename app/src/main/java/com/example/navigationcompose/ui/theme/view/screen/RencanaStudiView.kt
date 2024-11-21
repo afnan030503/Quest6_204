@@ -15,4 +15,7 @@ fun RencanaStudiView(
     var chosenDropdown by remember {
         mutableStateOf("")
     }
+    var checked by remember { mutableStateOf(false) }
+    var pilihankelas by remember {
+        mutableStateOf("")
     }
