@@ -36,6 +36,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.navigationcompose.Navigation.Halaman
 import com.example.navigationcompose.R
 import com.example.navigationcompose.data.MataKulliah
 import com.example.navigationcompose.data.RuangKelas
@@ -46,7 +48,8 @@ import com.example.navigationcompose.ui.theme.view.widget.DynamicSelectField
 fun RencanaStudiView(
     mahasiswa: Mahasiswa,
     onSubmitButtonClicked: (MutableList<String>) -> Unit,
-    onBackButtonClicked: () -> Unit
+    onBackButtonClicked: () -> Unit,
+    navController: NavController
 ) {
     var chosenDropdown by remember {
         mutableStateOf("")
@@ -170,10 +173,15 @@ fun RencanaStudiView(
                 }
                 Spacer(modifier = Modifier.padding(8.dp))
                 Row {
-                    Button(onClick = { onBackButtonClicked }) {
+                    Button(onClick = { onBackButtonClicked() }) {
                         Text(text = "Kembali")
                     }
-                    Button(onClick = { onSubmitButtonClicked(listData) }, enabled = checked) {
+                    Button(onClick = {
+                        onSubmitButtonClicked(listData)
+                        navController.navigate(Halaman.Tampil.name)
+                                     },
+                        enabled = checked)
+                    {
                         Text(text = "Lanjut")
                     }
                 }

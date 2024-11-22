@@ -39,9 +39,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigationcompose.R
 
+
 @Composable
 fun MahasiswaFormView(
-    onSubmitButoon: (MutableList<String>)
+    onSubmitButtonClicked: (MutableList<String>) ->Unit,
+    onBackButtonClicked: () ->Unit
 ) {
 
     var nama by remember { mutableStateOf("") }
@@ -56,19 +58,19 @@ fun MahasiswaFormView(
                 color = colorResource(
                     id = R.color.primary
                 )
-            )
+            ), horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.padding(16.dp))
         Row(
-            modifier = Modifier
-                .padding(30.dp),
+
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                modifier = Modifier.size(110.dp),
                 painter = painterResource(
                     id = R.drawable.umy1
                 ),
-                contentDescription = ""
+                contentDescription = "",
+                modifier = Modifier.size(45.dp)
             )
 
             Spacer(modifier = Modifier.padding(start = 30.dp))
@@ -112,9 +114,9 @@ fun MahasiswaFormView(
                     text = "Isi Sesuai Data yang kamu daftarkan",
                     fontWeight = FontWeight.Light
                 )
+                Spacer(modifier = Modifier.padding(8.dp))
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(50.dp),
                     value = nim,
                     onValueChange = { nim = it },
                     label = { Text(text = "Nomor Induk Mahasiswa") },
@@ -135,7 +137,7 @@ fun MahasiswaFormView(
 
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(50.dp),
+
                     value = nama,
                     onValueChange = { nama = it },
                     label = { Text(text = "Nama Mahasiswa") },
@@ -153,10 +155,9 @@ fun MahasiswaFormView(
                     shape = RoundedCornerShape(50.dp)
                 )
                 Spacer(modifier = Modifier.padding(4.dp))
-
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(50.dp),
+
                     value = email,
                     onValueChange = { email = it },
                     label = { Text(text = "Email Mahasiswa") },
@@ -165,7 +166,13 @@ fun MahasiswaFormView(
                             imageVector = Icons.Filled.Email,
                             contentDescription = ""
                         )
-                    }
+                    },
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Email,
+                        imeAction = ImeAction.Done
+                    ),
+                    singleLine = true,
+                    shape = RoundedCornerShape(50.dp)
                 )
 
                 Spacer(modifier = Modifier.padding(16.dp))
@@ -173,11 +180,11 @@ fun MahasiswaFormView(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    Button(onClick = { onBackButton }) {
-                        Text(text = "Back")
+                    Button(onClick = { onBackButtonClicked()}) {
+                        Text(text = "Kembali")
                     }
-                    Button(onClick = { onSubmitButoon }) {
-                        Text(text = "Submit")
+                    Button(onClick = { onSubmitButtonClicked(listData) }) {
+                        Text(text = "Simpan")
                     }
                 }
             }
